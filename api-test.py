@@ -4,7 +4,7 @@ import pymongo
 from bson import json_util
 from bson.objectid import ObjectId
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
@@ -22,6 +22,7 @@ collection = mongo_db['launches']
 
 
 @app.route('/api/test')
+@cross_origin()
 def sample():
     return parse_json(collection.find_one({'_id': ObjectId('6249ef70adb5c258563fbc0a')}))['test']
 
