@@ -19,7 +19,7 @@ collection = mongo_db['launches']
 # collection.insert_one({"test": "Hello world from the Api and Mongo :)"})
 
 
-@app.route('/api/test/')
+@app.route('/api/test')
 def sample():
     return parse_json(collection.find_one({'_id': ObjectId('6249ef70adb5c258563fbc0a')}))['test']
 
