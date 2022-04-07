@@ -1,10 +1,9 @@
-import json
-
 import pymongo
-from bson import json_util
 from bson.objectid import ObjectId
 from flask import Flask
 from flask_cors import CORS
+
+from mongo.mongo_utils import parse_json
 
 app = Flask(__name__)
 CORS(app)
@@ -20,14 +19,9 @@ collection = mongo_db['launches']
 # collection.drop()
 # collection.insert_one({"test": "Hello world from the Api and Mongo :)"})
 
-
 @app.route('/api/test')
 def sample():
     return parse_json(collection.find_one({'_id': ObjectId('6249ef70adb5c258563fbc0a')}))['test']
-
-
-def parse_json(data):
-    return json.loads(json_util.dumps(data))
 
 
 if __name__ == '__main__':
