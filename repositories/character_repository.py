@@ -4,4 +4,4 @@ collection = get_collection('character')
 
 
 def insert_one(character):
-    collection.insert_one(character)
+    collection.insert_one(character.__dict__)
