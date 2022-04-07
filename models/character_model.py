@@ -1,3 +1,6 @@
+import json
+
+
 class Character:
     def __init__(self, name, actor_name, actor_nickname, age, pronouns, creature_type, race, dnd_class):
         self.name = name
@@ -8,3 +11,7 @@ class Character:
         self.creature_type = creature_type
         self.race = race
         self.dnd_class = dnd_class
+
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
