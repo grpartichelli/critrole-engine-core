@@ -25,6 +25,7 @@ def run():
 
                 transcript.text = filter_text(transcript.text, filter_words)
                 filtered_transcript_repository.insert_one(transcript)
+        break
 
 
 def create_transcript_from_tag(tag, episode_number, actor_nickname):
