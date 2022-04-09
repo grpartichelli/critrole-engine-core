@@ -23,9 +23,8 @@ def run():
         if percent > last_percent:
             print("Loading Characters: " + str(math.ceil(percent)) + "%")
             last_percent = math.ceil(percent)
-
-
-print("Finish Loading Characters")
+            
+    print("Finish Loading Characters")
 
 
 def create_character_from_data_row(row):

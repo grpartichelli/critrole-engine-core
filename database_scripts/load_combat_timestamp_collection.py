@@ -1,7 +1,7 @@
 import math
 
 import pandas as pd
-
+from mongo import mongo_utils
 from models.combat_timestamp_model import CombatTimestamp
 from repositories import combat_timestamp_repository
 
@@ -23,9 +23,22 @@ def run():
         if percent > last_percent:
             print("Loading Combat Timestamps: " + str(math.ceil(percent)) + "%")
             last_percent = math.ceil(percent)
-
     print("Finish Loading Combat Timestamps")
 
 
 def create_combat_timestamp_from_data_row(row):
-    return CombatTimestamp()
+    return CombatTimestamp(
+        row['Encounter'].strip(),
+        convert_to_episode_number(row['Episode']),
+        mongo_utils.timestamp_to_date(row['Start Time']),
+        mongo_utils.timestamp_to_date(row['End Time']),
+        int(row['Rounds'])
+    )
+
+
+def convert_to_episode_number(value):
+    if isinstance(value, str):
+        value.strip()
+        value = value.removeprefix("C2E")
+        return int(value)
+    return None
