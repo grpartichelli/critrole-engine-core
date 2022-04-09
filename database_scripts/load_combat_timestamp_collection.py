@@ -1,4 +1,5 @@
 import math
+import time
 
 import pandas as pd
 from mongo import mongo_utils
@@ -9,6 +10,7 @@ TOTAL_ROWS = 139
 
 
 def run():
+    start = time.time()
     combat_timestamp_repository.drop()
     data = pd.read_excel(r'data/combat-times.xlsx', sheet_name='WM Combat Times')
 
@@ -24,6 +26,8 @@ def run():
             print("Loading Combat Timestamps: " + str(math.ceil(percent)) + "%")
             last_percent = math.ceil(percent)
     print("Finish Loading Combat Timestamps")
+    end = time.time()
+    print("Execution Time: " + str(round(end - start, 2)) + " seconds")
 
 
 def create_combat_timestamp_from_data_row(row):

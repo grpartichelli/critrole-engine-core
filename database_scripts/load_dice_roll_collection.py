@@ -1,5 +1,5 @@
 import math
-
+import time
 import pandas as pd
 
 from models.dice_roll_model import DiceRoll
@@ -10,6 +10,7 @@ TOTAL_ROWS = 15364
 
 
 def run():
+    start = time.time()
     dice_roll_repository.drop()
     data = pd.read_excel(r'data/all-rolls.xlsx', sheet_name='All Episodes')
 
@@ -26,6 +27,8 @@ def run():
             last_percent = math.ceil(percent)
 
     print("Finish Loading Dice Rolls")
+    end = time.time()
+    print("Execution Time: " + str(round(end - start, 2)) + " seconds")
 
 
 def create_dice_roll_from_data_row(row):
