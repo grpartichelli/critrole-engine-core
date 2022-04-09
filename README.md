@@ -1,6 +1,4 @@
-# critrole-engine-core
-
-Python and MongoDB Rest API for critical role
+# Python and MongoDB Rest API for critical role
 
 Required Installs:
 
