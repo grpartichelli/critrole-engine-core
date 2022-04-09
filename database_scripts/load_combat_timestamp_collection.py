@@ -11,6 +11,7 @@ TOTAL_ROWS = 139
 
 def run():
     start = time.time()
+    print("Loading Combat Times")
     combat_timestamp_repository.drop()
     data = pd.read_excel(r'data/combat-times.xlsx', sheet_name='WM Combat Times')
 

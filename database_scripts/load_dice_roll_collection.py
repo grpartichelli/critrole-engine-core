@@ -11,6 +11,7 @@ TOTAL_ROWS = 15364
 
 def run():
     start = time.time()
+    print("Loading Dice Rolls")
     dice_roll_repository.drop()
     data = pd.read_excel(r'data/all-rolls.xlsx', sheet_name='All Episodes')
 

@@ -2,7 +2,7 @@ from models.transcript_model import Transcript
 from repositories import transcript_repository, filtered_transcript_repository
 from bs4 import BeautifulSoup
 from mongo import mongo_utils
-from datetime import time
+import datetime
 import os
 import math
 import time
@@ -12,6 +12,7 @@ FILE_COUNT = 141
 
 def run():
     start = time.time()
+    print("Loading Transcripts")
     transcript_repository.drop()
     filter_words = load_common_words()
 
@@ -37,9 +38,6 @@ def run():
         if percent > last_percent:
             print("Loading Transcripts: " + str(math.ceil(percent)) + "%")
             last_percent = math.ceil(percent)
-
-        if i == 8:
-            break
 
     print("Finish Loading Transcripts")
     end = time.time()
@@ -76,7 +74,7 @@ def calculate_text(tag):
 
 def calculate_timestamp(tag):
     times = tag.get('id').replace('l', '').replace('h', '-').replace('m', '-').replace('s', '').split('-')
-    timestamp = time(int(times[0]), int(times[1]), int(times[2]), 0)
+    timestamp = datetime.time(int(times[0]), int(times[1]), int(times[2]), 0)
     return mongo_utils.timestamp_to_date(timestamp)
 
 

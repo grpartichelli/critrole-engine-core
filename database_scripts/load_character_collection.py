@@ -10,6 +10,7 @@ TOTAL_ROWS = 9
 
 def run():
     start = time.time()
+    print("Loading Characters")
     character_repository.drop()
     data = pd.read_excel(r'data/characters.xlsx')
 
