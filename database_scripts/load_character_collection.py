@@ -5,9 +5,20 @@ import pandas as pd
 
 def run():
     character_repository.drop()
-    character = Character('Name', 'ActorName', 'ActorNickname', 20, 'he/him', 'CreatureType', 'Race2', 'DndClass')
     data = pd.read_excel(r'data/characters.xlsx')
-    print(data)
-    print(character)
 
-    # character_repository.insert_one(character)
+    for index, row in data.iterrows():
+        character = create_character_from_data_row(row)
+        character_repository.insert_one(character)
+
+
+def create_character_from_data_row(row):
+    character = Character(row['name'].strip(),
+                          row['actorName'].strip(),
+                          row['actorNickname'].strip(),
+                          int(row['age']),
+                          [row['pronouns'].strip()],
+                          row['creatureType'].strip(),
+                          row['race'].strip(),
+                          row['class'].strip())
+    return character
