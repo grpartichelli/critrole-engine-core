@@ -1,9 +1,11 @@
-from datetime import datetime
+from datetime import time, datetime
 
 
 # Making all timestamps dates at 1970-01-01 to use mongo DateTime
 def timestamp_to_date(timestamp):
-    datetime.fromisoformat('1970-01-01' + " " + str(timestamp))
+    if isinstance(timestamp, time):
+        return datetime.fromisoformat('1970-01-01' + " " + str(timestamp))
+    return None
 
 
 def json_default(value):
