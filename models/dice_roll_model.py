@@ -1,8 +1,3 @@
-import json
-from datetime import datetime
-from mongo import mongo_utils
-
-
 class DiceRoll:
     def __init__(self, natural_value, total_value, character_name, was_enemy_killed, episode_number, timestamp, type):
         self.natural_value = natural_value

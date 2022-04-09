@@ -1,7 +1,3 @@
-import json
-from mongo import mongo_utils
-
-
 class Character:
     def __init__(self, name, actor_name, actor_nickname, age, pronouns, creature_type, race, dnd_class):
         self.name = name
