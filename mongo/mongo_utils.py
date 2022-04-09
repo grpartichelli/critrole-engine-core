@@ -1,5 +1,5 @@
-from datetime import time, datetime
 import json
+from datetime import time, datetime
 
 
 # Making all timestamps dates at 1970-01-01 to use mongo DateTime

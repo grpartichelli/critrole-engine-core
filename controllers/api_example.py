@@ -1,9 +1,8 @@
-from bson.objectid import ObjectId
-from flask_cors import cross_origin
 from flask import Blueprint
+from flask_cors import cross_origin
 
-from repositories import character_repository, dice_roll_repository
 from mongo import mongo_utils
+from repositories import character_repository, dice_roll_repository
 
 app_example = Blueprint('app_example', __name__)
 

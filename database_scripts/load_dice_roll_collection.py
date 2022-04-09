@@ -1,9 +1,10 @@
-from repositories import dice_roll_repository
+import math
+
+import pandas as pd
+
 from models.dice_roll_model import DiceRoll
 from mongo import mongo_utils
-import pandas as pd
-import math
-from datetime import datetime
+from repositories import dice_roll_repository
 
 TOTAL_ROWS = 15364
 

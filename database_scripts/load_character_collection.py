@@ -1,7 +1,9 @@
-from repositories import character_repository
-from models.character_model import Character
-import pandas as pd
 import math
+
+import pandas as pd
+
+from models.character_model import Character
+from repositories import character_repository
 
 TOTAL_ROWS = 9
 
