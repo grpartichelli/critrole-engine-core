@@ -2,14 +2,12 @@ from models.transcript_model import Transcript
 from repositories import transcript_repository
 from bs4 import BeautifulSoup
 from mongo import mongo_utils
+from datetime import time
 import os
 
 
 def run():
     transcript_repository.drop()
-
-    i = 0
-
     for file in os.listdir('data/transcripts/'):
         f = open(f'data/transcripts/{os.fsdecode(file)}', 'r')
         soup = BeautifulSoup(f.read(), 'html.parser')
@@ -21,10 +19,7 @@ def run():
                 actor_nickname = calculate_actor_nickname(tag)
             if tag.name == "dd":
                 transcript = create_transcript_from_tag(tag, episode_number, actor_nickname)
-                # print(mongo_utils.to_json(transcript))
-        i += 1
-        if i == 1:
-            break
+                transcript_repository.insert_one(transcript)
 
 
 def create_transcript_from_tag(tag, episode_number, actor_nickname):
@@ -43,8 +38,9 @@ def calculate_text(tag):
 
 
 def calculate_timestamp(tag):
-    print(tag.get('id'))
-    return tag.id
+    times = tag.get('id').replace('l', '').replace('h', '-').replace('m', '-').replace('s', '').split('-')
+    timestamp = time(int(times[0]), int(times[1]), int(times[2]), 0)
+    return mongo_utils.timestamp_to_date(timestamp)
 
 
 def calculate_youtube_link(tag):

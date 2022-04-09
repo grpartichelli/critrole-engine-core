@@ -11,7 +11,7 @@ def timestamp_to_date(timestamp):
 
 def to_json(obj):
     return json.dumps(obj, default=json_default,
-                      sort_keys=False, indent=4)
+                      sort_keys=False, indent=4, ensure_ascii=False)
 
 
 def json_default(value):
