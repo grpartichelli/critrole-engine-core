@@ -5,14 +5,13 @@ import pandas as pd
 import math
 from datetime import datetime
 
-TOTAL_ROWS = 15365
+TOTAL_ROWS = 15364
 
 
 def run():
     dice_roll_repository.drop()
     data = pd.read_excel(r'data/all-rolls.xlsx', sheet_name='All Episodes')
 
-    print("Start Loading Dice Rolls")
     i = 0
     last_percent = 0
     for index, row in data.iterrows():
@@ -22,7 +21,7 @@ def run():
         i += 1
         percent = 100 * i / TOTAL_ROWS
         if percent > last_percent:
-            print("LOADING: " + str(math.ceil(percent)) + "%")
+            print("Loading Dice Rolls: " + str(math.ceil(percent)) + "%")
             last_percent = math.ceil(percent)
 
     print("Finish Loading Dice Rolls")
