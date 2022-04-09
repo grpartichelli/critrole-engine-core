@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_cors import cross_origin
 
 from mongo import mongo_utils
-from repositories import character_repository, dice_roll_repository
+from repositories import character_repository, dice_roll_repository, combat_timestamp_repository
 
 app_example = Blueprint('app_example', __name__)
 
@@ -12,4 +12,5 @@ app_example = Blueprint('app_example', __name__)
 def test():
     character = character_repository.find_one({})
     dice_roll = dice_roll_repository.find_one({})
-    return mongo_utils.to_json([character, dice_roll])
+    combat_timestamp = combat_timestamp_repository.find_one({})
+    return mongo_utils.to_json([character, dice_roll, combat_timestamp])
