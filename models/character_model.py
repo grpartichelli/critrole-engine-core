@@ -1,4 +1,5 @@
 import json
+from mongo import mongo_utils
 
 
 class Character:
@@ -13,5 +14,5 @@ class Character:
         self.dnd_class = dnd_class
 
     def to_json(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
+        return json.dumps(self, default=mongo_utils.json_default,
                           sort_keys=True, indent=4)

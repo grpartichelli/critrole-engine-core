@@ -13,12 +13,12 @@ def run():
 
 
 def create_character_from_data_row(row):
-    character = Character(row['name'].strip(),
-                          row['actorName'].strip(),
-                          row['actorNickname'].strip(),
-                          int(row['age']),
-                          [row['pronouns'].strip()],
-                          row['creatureType'].strip(),
-                          row['race'].strip(),
-                          row['class'].strip())
-    return character
+    return Character(row['name'].strip(),
+                     row['actorName'].strip(),
+                     row['actorNickname'].strip(),
+                     int(row['age']),
+                     [row['pronouns'].strip()],
+                     row['creatureType'].strip(),
+                     row['race'].strip(),
+                     row['class'].strip())
+

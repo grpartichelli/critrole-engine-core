@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+from mongo import mongo_utils
 
 
 class DiceRoll:
@@ -12,5 +14,5 @@ class DiceRoll:
         self.type = type
 
     def to_json(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
+        return json.dumps(self, default=mongo_utils.json_default,
                           sort_keys=True, indent=4)

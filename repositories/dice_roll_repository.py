@@ -1,4 +1,4 @@
-from models.dice_rolls_model import DiceRoll
+from models.dice_roll_model import DiceRoll
 from mongo.mongo_connector import get_collection
 
 collection = get_collection('DICE_ROLLS')
