@@ -11,5 +11,5 @@ app_example = Blueprint('app_example', __name__)
 @app_example.route('/api/test')
 @cross_origin()
 def test():
-    character = character_repository.find_one({"name": "Name"})
+    character = character_repository.find_one({})
     return character.to_json()
