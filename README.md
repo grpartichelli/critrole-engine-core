@@ -13,3 +13,5 @@ pip install gunicorn
 pip install pandas
 
 pip install openpyxl
+
+pip install beautifulsoup4
