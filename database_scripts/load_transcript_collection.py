@@ -8,6 +8,8 @@ import os
 
 def run():
     transcript_repository.drop()
+    filter_words = load_common_words()
+
     for file in os.listdir('data/transcripts/'):
         f = open(f'data/transcripts/{os.fsdecode(file)}', 'r')
         soup = BeautifulSoup(f.read(), 'html.parser')
@@ -19,13 +21,10 @@ def run():
                 actor_nickname = calculate_actor_nickname(tag)
             if tag.name == "dd":
                 transcript = create_transcript_from_tag(tag, episode_number, actor_nickname)
-                # transcript_repository.insert_one(transcript)
-                print(mongo_utils.to_json(transcript))
+                transcript_repository.insert_one(transcript)
 
-                transcript.text = filter_text(transcript.text)
-                # filtered_transcript_repository.insert_one(transcript)
-                print(mongo_utils.to_json(transcript))
-        break
+                transcript.text = filter_text(transcript.text, filter_words)
+                filtered_transcript_repository.insert_one(transcript)
 
 
 def create_transcript_from_tag(tag, episode_number, actor_nickname):
@@ -39,8 +38,17 @@ def create_transcript_from_tag(tag, episode_number, actor_nickname):
     return transcript
 
 
-def filter_text(text):
-    return ''
+def filter_text(text, filter_words):
+    filtered = [word for word in text.split(" ") if word.lower() not in filter_words]
+    return " ".join(filtered)
+
+
+def load_common_words():
+    f = open('data/100-oxford-common-words.txt')
+    words = set()
+    for word in f:
+        words.add(word.strip())
+    return words
 
 
 def calculate_text(tag):
