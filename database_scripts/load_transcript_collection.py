@@ -1,5 +1,5 @@
 from models.transcript_model import Transcript
-from repositories import transcript_repository
+from repositories import transcript_repository, filtered_transcript_repository
 from bs4 import BeautifulSoup
 from mongo import mongo_utils
 from datetime import time
@@ -19,7 +19,13 @@ def run():
                 actor_nickname = calculate_actor_nickname(tag)
             if tag.name == "dd":
                 transcript = create_transcript_from_tag(tag, episode_number, actor_nickname)
-                transcript_repository.insert_one(transcript)
+                # transcript_repository.insert_one(transcript)
+                print(mongo_utils.to_json(transcript))
+
+                transcript.text = filter_text(transcript.text)
+                # filtered_transcript_repository.insert_one(transcript)
+                print(mongo_utils.to_json(transcript))
+        break
 
 
 def create_transcript_from_tag(tag, episode_number, actor_nickname):
@@ -31,6 +37,10 @@ def create_transcript_from_tag(tag, episode_number, actor_nickname):
         episode_number
     )
     return transcript
+
+
+def filter_text(text):
+    return ''
 
 
 def calculate_text(tag):
