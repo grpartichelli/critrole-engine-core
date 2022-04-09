@@ -14,6 +14,7 @@ def run():
     start = time.time()
     print("Loading Transcripts")
     transcript_repository.drop()
+    filtered_transcript_repository.drop()
     filter_words = load_common_words()
 
     i = 0
