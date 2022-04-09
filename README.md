@@ -6,6 +6,10 @@ pip install "pymongo[srv]"
 
 pip install Flask
 
+pip install -U flask-cors
+
 pip install gunicorn
 
-pip install -U flask-cors
+pip install pandas
+
+pip install openpyxl
