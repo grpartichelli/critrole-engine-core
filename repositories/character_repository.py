@@ -1,7 +1,7 @@
 from models.character_model import Character
-from mongo.mongo_connector import get_collection
+from mongo import mongo_connector
 
-collection = get_collection('CHARACTERS')
+collection = mongo_connector.get_collection('CHARACTERS')
 
 
 def drop():

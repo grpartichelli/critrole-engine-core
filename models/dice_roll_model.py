@@ -12,7 +12,3 @@ class DiceRoll:
         self.episode_number = episode_number
         self.timestamp = timestamp
         self.type = type
-
-    def to_json(self):
-        return json.dumps(self, default=mongo_utils.json_default,
-                          sort_keys=True, indent=4)

@@ -12,7 +12,3 @@ class Character:
         self.creature_type = creature_type
         self.race = race
         self.dnd_class = dnd_class
-
-    def to_json(self):
-        return json.dumps(self, default=mongo_utils.json_default,
-                          sort_keys=True, indent=4)

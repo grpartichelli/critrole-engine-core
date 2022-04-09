@@ -1,7 +1,7 @@
 from models.dice_roll_model import DiceRoll
-from mongo.mongo_connector import get_collection
+from mongo import mongo_connector
 
-collection = get_collection('DICE_ROLLS')
+collection = mongo_connector.get_collection('DICE_ROLLS')
 
 
 def drop():
