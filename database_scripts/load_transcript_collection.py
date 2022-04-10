@@ -20,7 +20,7 @@ def run():
     i = 0
     last_percent = 0
     for file in os.listdir('data/transcripts/'):
-        f = open(f'data/transcripts/{os.fsdecode(file)}', 'r')
+        f = open(f'data/transcripts/{os.fsdecode(file)}', 'r', encoding='utf8')
         soup = BeautifulSoup(f.read(), 'html.parser')
 
         episode_number = calculate_episode_number(soup)
