@@ -87,4 +87,6 @@ def convert_character_name(value):
         return "Caleb Widogast"
     if value == "Beau":
         return "Beauregard Lionett"
+    if value == "Nott" or value == "Veth":
+        return "Revvetha \"Veth\" Brenatto"
     return value
