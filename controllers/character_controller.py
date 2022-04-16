@@ -1,6 +1,5 @@
 from flask import Blueprint, request
 from flask_cors import cross_origin
-import json
 from mongo import mongo_utils
 from services import character_service
 
