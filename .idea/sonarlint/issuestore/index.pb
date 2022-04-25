@@ -2,12 +2,6 @@
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-8
-Procfile,b/c/bc3c68e880d1a01632bce79f69dd1387c7ba9c54
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
-@
-requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
 7
 main.py,f/1/f1bdda93d9a278e358509d498e17d97764c1fb29
 H
@@ -34,8 +28,6 @@ D
 mongo/mongo_utils.py,6/0/60d06aebfa5a15d7d5fb4a509d3b8914a6677693
 J
 models/transcript_model.py,c/e/ce79b441b0d1252f415d781f51173b6260ebbc8e
-U
-%repositories/transcript_repository.py,5/e/5ea7e0e993749923530a656841471c20cf7c4136
 ^
 .repositories/filtered_transcript_repository.py,0/2/02f5d15a15fe422cbdd6ff46bcf0a2b46c98e2e4
 P
