@@ -15,3 +15,12 @@ def search_transcripts(text):
 def search_transcripts_per_episode(text):
     return send_file(transcript_service.search_per_episode(text, request.args.get('actor_nickname')), mimetype='image/png')
 
+@transcript_controller.route('/api/transcripts/character_interactions/<first_actor>/<second_actor>')
+@cross_origin()
+def character_interactions(first_actor,second_actor):
+    return send_file(transcript_service.character_interactions(first_actor,second_actor), mimetype='image/png')
+
+@transcript_controller.route('/api/transcripts/wordcloud/')
+@cross_origin()
+def wordcloud():
+    return send_file(transcript_service.wordcloud(request.args.get('actor_nickname'), request.args.get('episode_number')), mimetype='image/png')

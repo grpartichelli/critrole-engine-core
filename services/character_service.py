@@ -13,5 +13,5 @@ def get_character(name, actor_name, actor_nickname, age, pronouns, creature_type
     if race: par_dictionary['race'] = race
     if dnd_class: par_dictionary['dnd_class'] = dnd_class
     character = character_repository.find_all(par_dictionary)
-
-    return [character]
+    print(name)
+    return character
