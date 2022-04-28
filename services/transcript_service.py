@@ -2,7 +2,7 @@ from repositories import transcript_repository, character_repository, filtered_t
 import re
 import matplotlib.pyplot as plt
 import io
-from wordcloud import WordCloud, ImageColorGenerator
+from wordcloud import WordCloud
 
 def search_transcripts(text, episode_number, actor_nickname):
     regx = re.compile(".*"+text+".*", re.IGNORECASE)
