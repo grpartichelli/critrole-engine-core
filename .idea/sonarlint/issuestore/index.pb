@@ -30,8 +30,6 @@ R
 "models/count_string_occurrences.py,f/3/f30f6e619c8b7fcbae150f6124dd2b1f2973d542
 8
 Procfile,b/c/bc3c68e880d1a01632bce79f69dd1387c7ba9c54
-@
-requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
 T
 $repositories/character_repository.py,1/e/1ef6cf7d2a149f5d2ee83e6994901d335a9c7559
 ]

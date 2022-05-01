@@ -4,3 +4,4 @@ pymongo==4.0.2
 dnspython==2.2.1
 Flask-Cors==3.0.10
 matplotlib==3.5.1
+wordcloud==1.8.1
