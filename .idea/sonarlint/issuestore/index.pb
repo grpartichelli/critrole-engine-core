@@ -26,10 +26,6 @@ d
 4database_scripts/load_combat_timestamp_collection.py,3/8/38bb3ed90b8cda82ddd5a0d511269287838971b0
 @
 load_database.py,a/a/aa61f4eacbf521b891f5cec47a67cf0cb9358dfe
-R
-"models/count_string_occurrences.py,f/3/f30f6e619c8b7fcbae150f6124dd2b1f2973d542
-8
-Procfile,b/c/bc3c68e880d1a01632bce79f69dd1387c7ba9c54
 T
 $repositories/character_repository.py,1/e/1ef6cf7d2a149f5d2ee83e6994901d335a9c7559
 ]
@@ -38,3 +34,15 @@ M
 services/character_service.py,2/c/2c7c608899901e529f271e3c3eaf3bb7cca91693
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+J
+models/transcript_model.py,c/e/ce79b441b0d1252f415d781f51173b6260ebbc8e
+S
+#controllers/character_controller.py,e/a/eab0889e5de87955d7cb7a7158cfe679e48f1a50
+D
+mongo/mongo_utils.py,6/0/60d06aebfa5a15d7d5fb4a509d3b8914a6677693
+I
+models/dice_roll_model.py,1/d/1dd91ab50640a40c31ab6404c59ac59d34a6ffeb
+S
+#controllers/dice_roll_controller.py,7/0/707f0ce10af429032c62f35bab8eb3fe6328d7bc
+T
+$repositories/dice_roll_repository.py,e/9/e9e9b07a982f8b843778764bca53143f366e8593

@@ -86,7 +86,8 @@ def wordcloud(actor_nickname, episode_number):
 
 
 def rank_actors_by_words(words):
-    return dict(sorted(transcript_repository.rank_by_words(list(words)).items(), key=lambda x: x[1], reverse=True))
+    list_words = words.split(',')
+    return dict(sorted(transcript_repository.rank_by_words(list_words).items(), key=lambda x: x[1], reverse=True))
 
 
 def get_transcripts_in_combat(episode_number):
