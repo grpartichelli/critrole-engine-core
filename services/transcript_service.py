@@ -1,12 +1,14 @@
-from repositories import transcript_repository, character_repository, filtered_transcript_repository, combat_timestamp_repository
+from repositories import transcript_repository, character_repository, filtered_transcript_repository, \
+    combat_timestamp_repository
 import re
 import matplotlib.pyplot as plt
 import io
 from wordcloud import WordCloud
 import collections, functools, operator
 
+
 def search_transcripts(text, episode_number, actor_nickname):
-    regx = re.compile(".*"+text+".*", re.IGNORECASE)
+    regx = re.compile(".*" + text + ".*", re.IGNORECASE)
     par_dictionary = dict()
     par_dictionary['text'] = regx
     if episode_number: par_dictionary['episode_number'] = int(episode_number)
@@ -17,14 +19,14 @@ def search_transcripts(text, episode_number, actor_nickname):
 
 
 def search_per_episode(text, actor_nickname):
-    regx = re.compile(".*"+text+".*", re.IGNORECASE)
+    regx = re.compile(".*" + text + ".*", re.IGNORECASE)
     par_dictionary = dict()
     par_dictionary['text'] = regx
     if actor_nickname: par_dictionary['actor_nickname'] = actor_nickname
     transcripts = transcript_repository.count_string_per_episode(par_dictionary)
-    x_vals,y_vals = zip(*[(float(i.episode_number),float(i.count)) for i in transcripts])
+    x_vals, y_vals = zip(*[(float(i.episode_number), float(i.count)) for i in transcripts])
     plt.clf()
-    plt.bar(x_vals,y_vals)
+    plt.bar(x_vals, y_vals)
     plt.xlabel('Episodes')
     plt.ylabel('Occurrences')
     bytIO = io.BytesIO()
@@ -42,24 +44,24 @@ def character_interactions(actor_one, actor_two):
 
     for character in characters_one:
         for name in character.name.split(" "):
-            regx = re.compile(".*"+name+".*", re.IGNORECASE)
+            regx = re.compile(".*" + name + ".*", re.IGNORECASE)
             par_dictionary = dict()
             par_dictionary['text'] = regx
             par_dictionary['actor_nickname'] = actor_two
-            two_to_one = two_to_one+transcript_repository.count_string(par_dictionary)
+            two_to_one = two_to_one + transcript_repository.count_string(par_dictionary)
 
     for character in characters_two:
         for name in character.name.split(" "):
-            regx = re.compile(".*"+name+".*", re.IGNORECASE)
+            regx = re.compile(".*" + name + ".*", re.IGNORECASE)
             par_dictionary = dict()
             par_dictionary['text'] = regx
             par_dictionary['actor_nickname'] = actor_one
-            one_to_two = one_to_two+transcript_repository.count_string(par_dictionary)
+            one_to_two = one_to_two + transcript_repository.count_string(par_dictionary)
 
     x_vals = [actor_one + " about " + actor_two, actor_two + " about " + actor_one]
     y_vals = [one_to_two, two_to_one]
     plt.clf()
-    plt.bar(x_vals,y_vals)
+    plt.bar(x_vals, y_vals)
     plt.ylabel('References')
     bytIO = io.BytesIO()
     plt.savefig(bytIO)
@@ -84,7 +86,7 @@ def wordcloud(actor_nickname, episode_number):
 
 
 def rank_actors_by_words(words):
-    return dict(sorted(transcript_repository.rank_by_words(list(words)).items(),key=lambda x: x[1], reverse=True))
+    return dict(sorted(transcript_repository.rank_by_words(list(words)).items(), key=lambda x: x[1], reverse=True))
 
 
 def get_transcripts_in_combat(episode_number):
@@ -94,6 +96,7 @@ def get_transcripts_in_combat(episode_number):
     for combat in list_of_combats:
         before = combat.start_timestamp
         after = combat.end_timestamp
-        transcripts_in_combat.append(transcript_repository.find_all({"timestamp" : { "$gte" : before, "$lt" : after }}))
+        transcripts_in_combat.append(transcript_repository.find_all(
+            {"timestamp": {"$gte": before, "$lt": after}, "episode_number": int(episode_number)}))
 
     return transcripts_in_combat
