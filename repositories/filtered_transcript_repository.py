@@ -82,6 +82,10 @@ def most_common_strings(params):
   ))
 
 
+def most_common_strings_by_timestamps(before,after):
+    return most_common_strings({"timestamp" : { "$gte" : before, "$lt" : after }})
+
+
 def convert_mongo_to_dictionary(mongo_cursor):
     dictionary = dict()
     for i in list(mongo_cursor):

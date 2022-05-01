@@ -17,6 +17,10 @@ def find_one(params):
     return convert_mongo_to_dice_roll(collection.find_one(params))
 
 
+def find_all(params):
+    return convert_mongo_to_dice_roll_list(collection.find(params))
+
+
 def average_by_character():
     return convert_mongo_to_avg_dice_roll_list(collection.aggregate([
         {
@@ -43,6 +47,13 @@ def average_by_character():
 def convert_mongo_to_dice_roll(mongo_dice_roll):
     del mongo_dice_roll['_id']
     return DiceRoll(**mongo_dice_roll)
+
+
+def convert_mongo_to_dice_roll_list(mongo_dice_roll_list):
+    dice_roll_list=[]
+    for i in mongo_dice_roll_list:
+        dice_roll_list.append(convert_mongo_to_dice_roll(i))
+    return dice_roll_list
 
 
 def convert_mongo_to_avg_dice_roll(mongo_avg_dice_roll):

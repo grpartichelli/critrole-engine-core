@@ -1,8 +1,9 @@
-from repositories import transcript_repository, character_repository, filtered_transcript_repository
+from repositories import transcript_repository, character_repository, filtered_transcript_repository, combat_timestamp_repository
 import re
 import matplotlib.pyplot as plt
 import io
 from wordcloud import WordCloud
+import collections, functools, operator
 
 def search_transcripts(text, episode_number, actor_nickname):
     regx = re.compile(".*"+text+".*", re.IGNORECASE)
@@ -80,3 +81,19 @@ def wordcloud(actor_nickname, episode_number):
     plt.savefig(bytIO)
     bytIO.seek(0)
     return bytIO
+
+
+def rank_actors_by_words(words):
+    return dict(sorted(transcript_repository.rank_by_words(list(words)).items(),key=lambda x: x[1], reverse=True))
+
+
+def get_transcripts_in_combat(episode_number):
+    list_of_combats = combat_timestamp_repository.find_all({"episode_number": int(episode_number)})
+    transcripts_in_combat = []
+
+    for combat in list_of_combats:
+        before = combat.start_timestamp
+        after = combat.end_timestamp
+        transcripts_in_combat.append(transcript_repository.find_all({"timestamp" : { "$gte" : before, "$lt" : after }}))
+
+    return transcripts_in_combat

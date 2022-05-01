@@ -37,6 +37,47 @@ def count_string_per_episode(params):
     ]))
 
 
+def rank_by_words(strings):
+    return convert_mongo_to_dictionary(collection.aggregate(
+        [
+        {
+            '$addFields': {
+            'words': {
+                '$map': {
+                'input': { '$split': ['$text', ' '] },
+                'as': 'str',
+                'in': {
+                    '$trim': {
+                    'input': { '$toLower': ['$$str'] },
+                    'chars': " ,|(){}[]-<>.:;"
+                    }
+                }
+                }
+            }
+            }
+        },
+        { '$unwind': '$words' },
+        {
+            '$match': {
+                'words': {
+                    '$in': strings
+                }
+            }
+        },
+        { "$group": {
+            "_id": "$actor_nickname",
+            "count": { "$sum": 1 },
+        } }]
+  ))
+
+
+def convert_mongo_to_dictionary(mongo_cursor):
+    dictionary = dict()
+    for i in list(mongo_cursor):
+        dictionary[i["_id"]] = i["count"]
+    return dictionary
+
+
 def convert_mongo_to_transcript(mongo_transcript):
     del mongo_transcript['_id']
     return Transcript(**mongo_transcript)

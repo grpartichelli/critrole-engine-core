@@ -24,3 +24,13 @@ def character_interactions(first_actor,second_actor):
 @cross_origin()
 def wordcloud():
     return send_file(transcript_service.wordcloud(request.args.get('actor_nickname'), request.args.get('episode_number')), mimetype='image/png')
+
+@transcript_controller.route('/api/transcripts/rank/<words>')
+@cross_origin()
+def rank_actors_by_words(words):
+    return mongo_utils.to_json(transcript_service.rank_actors_by_words(words))
+
+@transcript_controller.route('/api/transcripts/in_combat/<episode_number>')
+@cross_origin()
+def transcripts_in_combat(episode_number):
+    return mongo_utils.to_json(transcript_service.get_transcripts_in_combat(episode_number))
