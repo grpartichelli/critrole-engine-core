@@ -27,11 +27,13 @@ def most_used_words_by_roll(roll):
     words_dict = dict(functools.reduce(operator.add,
                                        map(collections.Counter, list_of_dicts)))
 
-    wordcloud = WordCloud(background_color='white', colormap="cool").generate_from_frequencies(words_dict)
+    wordcloud = WordCloud(width=1920, height=1080, background_color='white', colormap="cool").generate_from_frequencies(
+        words_dict)
     plt.clf()
+    plt.figure(figsize=(20, 10), facecolor='k')
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     bytIO = io.BytesIO()
-    plt.savefig(bytIO)
+    plt.savefig(bytIO, facecolor='k', bbox_inches='tight')
     bytIO.seek(0)
     return bytIO
