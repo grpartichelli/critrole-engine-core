@@ -20,8 +20,8 @@ def most_used_words_by_roll(roll):
     list_of_rolls = random.sample(list_of_rolls, 25)
 
     for roll in list_of_rolls:
-        before = roll.timestamp
-        after = roll.timestamp + timedelta(seconds=5)
+        before = roll.timestamp - timedelta(seconds=5)
+        after = roll.timestamp + timedelta(seconds=10)
         list_of_dicts.append(filtered_transcript_repository.most_common_strings_by_timestamps(before, after))
 
     words_dict = dict(functools.reduce(operator.add,

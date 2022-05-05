@@ -18,8 +18,6 @@ P
  models/combat_timestamp_model.py,c/a/ca316c2fea2d810259fc02fe07d28da430d8c05c
 K
 data/transcripts/cr2-1.html,5/b/5be33d52c58f229b0ae42c86db3f6d164a8d5fb4
-P
- data/100-oxford-common-words.txt,d/1/d12bbce8877f8e55456ca6aa4e664395038e720f
 ]
 -database_scripts/load_dice_roll_collection.py,e/1/e17355afb7245ab16094b564b44527337e3ca2ee
 d

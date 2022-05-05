@@ -66,6 +66,10 @@ def load_common_words():
     words = set()
     for word in f:
         words.add(word.strip())
+
+    f2 = open('data/200-selected-words.txt')
+    for word in f2:
+        words.add(word.strip())
     return words
 
 
