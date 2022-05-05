@@ -62,7 +62,7 @@ def character_interactions(actor_one, actor_two):
     y_vals = [one_to_two, two_to_one]
     plt.clf()
     plt.bar(x_vals, y_vals)
-    plt.ylabel('References')
+    plt.ylabel('Times referenced other character')
     bytIO = io.BytesIO()
     plt.savefig(bytIO)
     bytIO.seek(0)
@@ -87,7 +87,18 @@ def wordcloud(actor_nickname, episode_number):
 
 def rank_actors_by_words(words):
     list_words = words.split(',')
-    return dict(sorted(transcript_repository.rank_by_words(list_words).items(), key=lambda x: x[1], reverse=True))
+    result = dict(sorted(transcript_repository.rank_by_words(list_words).items(), key=lambda x: x[1], reverse=False))
+
+    x_vals = list(result.keys())
+    y_vals = list(result.values())
+
+    plt.clf()
+    plt.barh(x_vals, y_vals)
+    plt.xlabel('Times the words were used')
+    bytIO = io.BytesIO()
+    plt.savefig(bytIO)
+    bytIO.seek(0)
+    return bytIO
 
 
 def get_transcripts_in_combat(episode_number):
