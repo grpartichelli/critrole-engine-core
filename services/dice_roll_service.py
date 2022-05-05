@@ -30,7 +30,7 @@ def most_used_words_by_roll(roll):
     wordcloud = WordCloud(width=1920, height=1080, background_color='white', colormap="cool").generate_from_frequencies(
         words_dict)
     plt.clf()
-    plt.figure(figsize=(20, 10))
+    plt.figure(figsize=(20, 8))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     bytIO = io.BytesIO()

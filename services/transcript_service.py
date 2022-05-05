@@ -30,7 +30,7 @@ def search_per_episode(text, actor_nickname):
     plt.xlabel('Episodes')
     plt.ylabel('Times word was used')
     bytIO = io.BytesIO()
-    plt.savefig(bytIO, dpi=200)
+    plt.savefig(bytIO, dpi=100)
     bytIO.seek(0)
     return bytIO
 
@@ -64,7 +64,7 @@ def character_interactions(actor_one, actor_two):
     plt.bar(x_vals, y_vals)
     plt.ylabel('Times referenced other character')
     bytIO = io.BytesIO()
-    plt.savefig(bytIO, dpi=200)
+    plt.savefig(bytIO, dpi=100)
     bytIO.seek(0)
     return bytIO
 
@@ -78,7 +78,7 @@ def wordcloud(actor_nickname, episode_number):
     wordcloud = WordCloud(width=1920, height=1080, background_color='white', colormap="cool").generate_from_frequencies(
         words_dict)
     plt.clf()
-    plt.figure(figsize=(20, 10))
+    plt.figure(figsize=(20, 8))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     bytIO = io.BytesIO()
@@ -98,7 +98,7 @@ def rank_actors_by_words(words):
     plt.barh(x_vals, y_vals)
     plt.xlabel('Times the words were used')
     bytIO = io.BytesIO()
-    plt.savefig(bytIO, dpi=200)
+    plt.savefig(bytIO, dpi=100)
     bytIO.seek(0)
     return bytIO
 
