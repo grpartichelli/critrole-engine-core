@@ -13,6 +13,13 @@ def insert_one(transcript):
     collection.insert_one(transcript.__dict__)
 
 
+def insert_many(transcripts):
+    arr = []
+    for t in transcripts:
+        arr.append(t.__dict__)
+    collection.insert_many(arr)
+
+
 def find_one(params):
     return convert_mongo_to_transcript(collection.find_one(params))
 

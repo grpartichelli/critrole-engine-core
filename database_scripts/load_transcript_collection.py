@@ -14,13 +14,15 @@ def run():
     start = time.time()
     print("Loading Transcripts")
     transcript_repository.drop()
-    filtered_transcript_repository.drop()
+    # filtered_transcript_repository.drop()
     filter_words = load_common_words()
 
     i = 0
     last_percent = 0
     for file in os.listdir('data/transcripts/'):
+        transcripts = []
         f = open(f'data/transcripts/{os.fsdecode(file)}', 'r', encoding='utf8')
+        print(os.fsdecode(file))
         soup = BeautifulSoup(f.read(), 'html.parser')
 
         episode_number = calculate_episode_number(soup)
@@ -34,6 +36,12 @@ def run():
 
                 transcript.text = filter_text(transcript.text, filter_words)
                 filtered_transcript_repository.insert_one(transcript)
+        transcript_repository.insert_many(transcripts)
+        arr = []
+        for t in transcripts:
+            t.text = filter_text(t.text, filter_words)
+            arr.append(t)
+        filtered_transcript_repository.insert_many(transcripts)
         i += 1
         percent = 100 * i / FILE_COUNT
         if percent > last_percent:
