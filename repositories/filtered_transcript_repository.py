@@ -48,7 +48,7 @@ def most_common_strings(params):
             {
                 '$match': {
                     'words': {
-                        '$nin': [""]
+                        '$nin': ["", "you", "it"]
                     }
                 }
             },
