@@ -30,8 +30,6 @@ M
 services/character_service.py,2/c/2c7c608899901e529f271e3c3eaf3bb7cca91693
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-J
-models/transcript_model.py,c/e/ce79b441b0d1252f415d781f51173b6260ebbc8e
 S
 #controllers/character_controller.py,e/a/eab0889e5de87955d7cb7a7158cfe679e48f1a50
 D

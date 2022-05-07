@@ -25,12 +25,25 @@ def search_per_episode(text, actor_nickname):
     if actor_nickname: par_dictionary['actor_nickname'] = actor_nickname
     transcripts = transcript_repository.count_string_per_episode(par_dictionary)
     x_vals, y_vals = zip(*[(float(i.episode_number), float(i.count)) for i in transcripts])
+
+    x_vals_list = list(x_vals)
+    y_vals_list = list(y_vals)
+    if 0 not in x_vals:
+        x_vals_list.insert(0, 0)
+        y_vals_list.insert(0, 0)
+    if 141 not in x_vals:
+        x_vals_list.append(141)
+        y_vals_list.append(0)
+
+    y_vals = tuple(y_vals_list)
+    x_vals = tuple(x_vals_list)
+
     plt.clf()
     plt.bar(x_vals, y_vals)
     plt.xlabel('Episodes')
     plt.ylabel('Times word was used')
     bytIO = io.BytesIO()
-    plt.savefig(bytIO, dpi=100)
+    plt.savefig(bytIO)
     bytIO.seek(0)
     return bytIO
 
@@ -64,7 +77,7 @@ def character_interactions(actor_one, actor_two):
     plt.bar(x_vals, y_vals)
     plt.ylabel('Times referenced other character')
     bytIO = io.BytesIO()
-    plt.savefig(bytIO, dpi=100)
+    plt.savefig(bytIO)
     bytIO.seek(0)
     return bytIO
 
@@ -89,7 +102,14 @@ def wordcloud(actor_nickname, episode_number):
 
 def rank_actors_by_words(words):
     list_words = words.split(',')
-    result = dict(sorted(transcript_repository.rank_by_words(list_words).items(), key=lambda x: x[1], reverse=False))
+    r = dict(
+        sorted(transcript_repository.rank_by_words(list_words).items(), key=lambda x: x[1], reverse=False))
+
+    result = {}
+    for key, value in r.items():
+        # Check if key is even then add pair to new dictionary
+        if key in ['LAURA', 'TALIESIN', 'ASHLEY', 'LIAM', 'MARISHA', 'SAM', 'TRAVIS', 'MATT']:
+            result[key] = value
 
     x_vals = list(result.keys())
     y_vals = list(result.values())
@@ -98,7 +118,7 @@ def rank_actors_by_words(words):
     plt.barh(x_vals, y_vals)
     plt.xlabel('Times the words were used')
     bytIO = io.BytesIO()
-    plt.savefig(bytIO, dpi=100)
+    plt.savefig(bytIO)
     bytIO.seek(0)
     return bytIO
 
